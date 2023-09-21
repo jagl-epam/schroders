@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Home from './src/Screens/Home';
-import {Header} from './src/Components';
+
+import {Home} from '@src/Screens';
+import {Header} from '@src/Components';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

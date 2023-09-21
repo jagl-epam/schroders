@@ -8,7 +8,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {getMergedPulls} from '../Api';
+import {getMergedPulls} from '@src/Api';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -40,7 +40,7 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
-function Home(): JSX.Element {
+export function Home(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
@@ -92,5 +92,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-
-export default Home;
