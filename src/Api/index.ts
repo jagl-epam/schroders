@@ -1,0 +1,1 @@
+export {getMergedPulls} from './Api';
