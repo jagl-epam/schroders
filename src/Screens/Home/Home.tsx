@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {TextInput, useColorScheme, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {getMergedPulls} from '@src/Api';
-import {Button} from '@src/Components';
+import {Button, Graph} from '@src/Components';
 
-import {styles} from './Home.styles';
+import {useStyle} from './Home.styles';
 
 export function Home(): JSX.Element {
   const [repositoryOwner, setRepositoryOwner] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
+  const styles = useStyle({isDarkMode});
 
   const onPress = async (): Promise<void> => {
     const data = await getMergedPulls();
@@ -17,11 +17,11 @@ export function Home(): JSX.Element {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-      }}>
-      <View>
+    <View style={styles.container}>
+      <View
+        style={{
+          flex: 1 / 3,
+        }}>
         <TextInput
           style={styles.input}
           onChangeText={setRepositoryOwner}
@@ -35,6 +35,9 @@ export function Home(): JSX.Element {
           placeholder="Repository Owner"
         />
         <Button text="Look for data" onPress={onPress} />
+      </View>
+      <View style={styles.graph}>
+        <Graph.Bar />
       </View>
     </View>
   );
