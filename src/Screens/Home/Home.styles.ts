@@ -12,6 +12,9 @@ export const useStyle = (props: StylesProps) =>
       flex: 1,
       paddingHorizontal: 16,
     },
+    inputContainer: {
+      flex: 1 / 3,
+    },
     input: {
       height: 40,
       marginVertical: 12,

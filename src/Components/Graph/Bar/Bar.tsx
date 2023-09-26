@@ -1,26 +1,33 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {FC} from 'react';
+import {Text, View} from 'react-native';
 import {BarChart} from 'react-native-gifted-charts';
 
+import {BarProps, TooltipProps} from './Bar.props';
 import {styles} from './Bar.styles';
 
-export const Bar = () => {
-  const barData = [
-    {value: 230, label: 'Jan', frontColor: '#4ABFF4'},
-    {value: 180, label: 'Feb', frontColor: '#79C3DB'},
-    {value: 195, label: 'Mar', frontColor: '#28B2B3'},
-    {value: 250, label: 'Apr', frontColor: '#4ADDBA'},
-    {value: 320, label: 'May', frontColor: '#91E3E3'},
-  ];
+export const Bar: FC<BarProps> = ({data}) => {
+  const values = data.map(d => d.value);
+  const maxValue = Math.max(...values);
+
   return (
     <View style={styles.container}>
       <BarChart
-        showFractionalValues
+        barWidth={22}
+        barBorderRadius={4}
         showYAxisIndices
         noOfSections={4}
-        maxValue={400}
-        data={barData}
+        maxValue={maxValue + 50}
+        data={data}
         isAnimated
+        yAxisThickness={0}
+        xAxisThickness={0}
+        renderTooltip={(item: TooltipProps) => {
+          return (
+            <View style={styles.tooltip}>
+              <Text>{item.value}</Text>
+            </View>
+          );
+        }}
       />
     </View>
   );
